@@ -9,17 +9,14 @@ SUCC = n => f => x => f (n (f) (x))
 // Predecessor
 PRED = n => f => x => n (g => h => h (g (f))) (u => x) (u => u)
 
-// Addition
+// Operators
 PLUS = m => n => f => x => m (f) (n (f) (x))
-
-// Subtraction
 SUB = m => n => n (PRED) (m)
-
-// Multiplication
 MULT = m => n => f => m (n (f))
-
-// Exponentiation
 POW = b => e => e (b)
+
+
+// Utilities
 
 // Used to translate church numerals to int by executing <numeral>(count)(<from>)
 // EG MULT(SUCC(SUCC(Z)))(SUCC(SUCC(SUCC(Z))))(count)(0) == 6
@@ -35,4 +32,20 @@ function translate(i) {
 function integer(n) {
 	if (n <= 0) return Z;
 	else return SUCC(integer(n-1));
+}
+
+
+// Module exports
+
+module.exports = {
+	Z: Z,
+	SUCC: SUCC,
+	PRED: PRED,
+	PLUS: PLUS,
+	SUB: SUB,
+	MULT: MULT,
+	POW: POW,
+	count: count,
+	translate: translate,
+	integer: integer,
 }
