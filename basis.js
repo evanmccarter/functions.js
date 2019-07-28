@@ -3,7 +3,15 @@
 // A basis that, when composed with each other, can generate all other functions
 
 // Kestrel
-a => b => a
+K = a => b => a
 
 // Starling
-a => b => c => a (c) (b (c))
+S = a => b => c => a (c) (b (c))
+
+
+// Module exports
+
+module.exports = {
+	K: K,
+	S: S,
+}
